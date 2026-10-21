@@ -1,13 +1,18 @@
 * { 
     box-sizing: border-box;
     font-family: "Isometra", serif;
-  font-weight: 400;
-  font-style: normal;
- }
+    font-weight: 400;
+    font-style: normal;
+}
+ body{
+    margin: 0; 
+    background: #0B0B0F; 
+    color: #EFE6CF; 
+}
 
 /* PAGE HOME */
- 
-.home{
+
+.Section-buttons{
     margin: 0;
     background-image: url(../images/background3.png);
     background-position: center;
@@ -19,7 +24,7 @@
 
 .navbar {
     background-color: rgba(80, 40, 120, 0.5);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
@@ -80,4 +85,161 @@ section {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+
+/*___________________________second section_______________________________________ */
+
+/* SECTION DES CARTES */
+
+.card-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.card-section h2 {
+    text-align: center;
+    color: gold;
+    margin-bottom: 30px;
+    font-size: 2rem;
+}
+
+/* GRILLE */
+
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+/* STYLE COMMUN DES CARTES */
+
+.card {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    cursor: default;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* TITRE */
+
+.card h3 {
+    position: absolute;
+    bottom: 10px;
+    left: 15px;
+    z-index: 1;
+    color: white;
+    font-size: 1.1rem;
+    transition: opacity 0.3s ease;
+}
+
+/* DESCRIPTION */
+
+.card p {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    margin: 0;
+    text-align: center;
+    color: #EFE6CF;
+    background: rgba(11, 11, 15, 0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* ANIMATION AU SURVOL */
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(251, 191, 36, 0.5);
+    z-index: 2;
+}
+
+.card:hover h3 {
+    opacity: 0;
+}
+
+.card:hover p {
+    opacity: 1;
+}
+
+/* IMAGES */
+
+.card-light {
+    background-image: url("../images/IMG_3353.jpg");
+}
+
+.card-dark {
+    background-image: url("../images/IMG_3355.jpg");
+}
+
+.card-minions {
+    background-image: url("../images/IMG_3349.jpg");
+}
+
+.card-spells {
+    background-image: url("../images/IMG_3357.jpg");
+}
+
+.card-common {
+    background-image: url("../images/IMG_3384.jpg");
+}
+
+.card-rare {
+    background-image: url("../images/IMG_3351.jpg");
+}
+
+.card-epic {
+    background-image: url("../images/IMG_3352.jpg");
+}
+
+.card-legendary {
+    background-image: url("../images/IMG_3359.jpg");
+}
+
+/* TABLETTE */
+
+@media (max-width: 900px) {
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 480px) {
+    .cards-container {
+        gap: 12px;
+    }
+
+    .card {
+        height: 180px;
+    }
+
+    .card h3 {
+        left: 10px;
+        font-size: 0.9rem;
+    }
+
+    .card p {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* ACCESSIBILITÉ */
+
+@media (prefers-reduced-motion: reduce) {
+    .card,
+    .card h3,
+    .card p {
+        transition: none;
+    }
 }
