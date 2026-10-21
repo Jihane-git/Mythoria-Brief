@@ -1,5 +1,3 @@
-
-
 const boosters = [
   /* ---------- BEGINNER PACK (50 DH, 5 cartes) ---------- */
   { id: 1, name: "Éveil des Braises", category: "Beginner Pack", element: "feu",
@@ -99,16 +97,63 @@ const boosters = [
     description: "La relique la plus mystérieuse du royaume : huit cartes aléatoires, et peut-être une légende cachée parmi elles.",
     price: 120, cardsCount: 8, image: "images/IMG_3379.jpg" }
 ];
-console.log(boosters)
-const list = document.querySelector('.list-carts')
 
-boosters.forEach((booster)=>{
-    list.innerHTML += `
-    <article > 
-    <img src = "${booster.image}" alt=" ${booster.name}" width= "300" height="400" ">
-    <h3> ${booster.name} </h3>
-    <p> ${booster.description} </p>
-    <p> ${booster.price} DH </p>
-    </article>
-    `;
-}); 
+const productList = document.querySelector(".list-carts");
+const cartList = document.querySelector("#items-panier");
+const totalElement = document.querySelector("#total");
+const cart = [];
+
+function renderBoosters() {
+    productList.innerHTML = boosters.map((booster) => `
+        <article class="booster-item" data-id="${booster.id}">
+            <img src="${booster.image}" alt="Illustration du booster ${booster.name}" loading="lazy" width="300px" height="100px">
+            <div class="booster-info">
+                <p class="booster-element">${booster.category} · ${booster.element}</p>
+                <h3>${booster.name}</h3>
+                <p class="booster-description">${booster.description}</p>
+                <p class="booster-details">${booster.cardsCount} cartes</p>
+                <div class="booster-buy">
+                    <strong>${booster.price} DH</strong>
+                    <button type="button" class="ajouter" data-id="${booster.id}">Ajouter au panier</button>
+                </div>
+            </div>
+        </article>
+    `).join("");
+}
+
+
+function renderCart() {
+    cartList.innerHTML = cart.map((item, index) => `
+        <li class="cart-item">
+            <span>${item.name}</span>
+            <span>${item.price} DH</span>
+            <button type="button" class="supprimer" data-index="${index}" aria-label="Supprimer ${item.name} du panier">Retirer</button>
+        </li>
+    `).join("");
+
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    totalElement.textContent = total;
+}
+
+
+productList.addEventListener("click", (event) => {
+    const button = event.target.closest(".ajouter");
+    if (!button) return;
+
+    const booster = boosters.find((item) => item.id === Number(button.dataset.id));
+    if (!booster) return;
+
+    cart.push(booster);
+    renderCart();
+});
+
+cartList.addEventListener("click", (event) => {
+    const button = event.target.closest(".supprimer");
+    if (!button) return;
+
+    cart.splice(Number(button.dataset.index), 1);
+    renderCart();
+});
+
+renderBoosters();
+renderCart();

@@ -72,6 +72,15 @@ section {
     padding-top: 140px;
 }
 
+.Section-buttons{
+    margin: 0;
+    background-image: url(../images/background3.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
 .Buttons-Home {
     display: flex;
     justify-content: center;
@@ -234,8 +243,6 @@ section {
     }
 }
 
-/* ACCESSIBILITÉ */
-
 @media (prefers-reduced-motion: reduce) {
     .card,
     .card h3,
@@ -243,3 +250,13 @@ section {
         transition: none;
     }
 }
+
+.list-carts{
+    display: flex;
+ 
+}
+.card{
+    width: 100px;
+    height: 300px;
+}
+
