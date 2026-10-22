@@ -937,3 +937,60 @@ a{
         transition-duration: 0.01ms !important;
     }
 }
+
+.nav-actions{display:flex;align-items:center;gap:1rem}
+
+/* Burger : caché sur grand écran */
+.burger{
+  display:none;width:46px;height:46px;
+  flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  border:1px solid var(--line);border-radius:50%;background:transparent;cursor:pointer;
+}
+.burger span{
+    width:20px;height:2px;background:var(--gold);border-radius:2px;transition:transform .3s,opacity .3s
+}
+.burger.is-open span:nth-child(1){
+    transform:translateY(7px) rotate(45deg)
+}
+.burger.is-open span:nth-child(2){
+    opacity:0
+}
+.burger.is-open span:nth-child(3){
+    transform:translateY(-7px) rotate(-45deg)
+}
+.burger:focus-visible{
+    box-shadow:0 0 0 3px var(--gold);outline:none
+}
+
+@media(max-width:850px){
+  .burger{display:flex}
+  .navbar{height:76px;flex-wrap:nowrap}
+
+  /* Menu déroulant sous la navbar */
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;
+    flex-direction:column;flex-wrap:nowrap;gap:0;
+    max-height:0;overflow:hidden;
+    background:#111014;border-bottom:1px solid transparent;
+    transition:max-height .35s ease,border-color .35s;
+  }
+  .nav-links.is-open{
+    max-height:420px;
+    border-bottom-color:var(--line)
+}
+  .nav-links a{
+    display:block;
+    padding:1rem clamp(1rem,5vw,5rem);
+    border-top:1px solid var(--line);
+    font-size:1rem
+}
+
+  /* Le panier s'ouvre sous la navbar, sans sortir de l'écran */
+  .cart-menu{
+    position:static
+}
+  .cart-panel{
+    top:calc(100% + 8px);
+    right:12px
+}
+}

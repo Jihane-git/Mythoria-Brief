@@ -98,56 +98,52 @@ const boosters = [
     price: 120, cardsCount: 8, image: "images/IMG_3379.jpg" }
 ];
 
-const productList = document.querySelector(".list-carts");
+const burger = document.querySelector("#burger");
+const navLinks = document.querySelector("#nav-links");
+
+function setMenu(open) {
+    if (!burger || !navLinks) return;
+    navLinks.classList.toggle("is-open", open);
+    burger.classList.toggle("is-open", open);
+    burger.setAttribute("aria-expanded", String(open));
+    burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+}
+
+if (burger && navLinks) {
+    burger.addEventListener("click", () => {
+        const willOpen = !navLinks.classList.contains("is-open");
+        setMenu(willOpen);
+        if (willOpen) closeCart();
+    });
+
+    navLinks.addEventListener("click", (e) => {
+        if (e.target.closest("a")) setMenu(false);
+    });
+
+    window.matchMedia("(min-width: 851px)").addEventListener("change", (e) => {
+        if (e.matches) setMenu(false);
+    });
+}
+
+/* =========================================================
+   3. PANIER (toutes les pages, sauvegardé entre les pages)
+   ========================================================= */
 const cartList = document.querySelector("#items-panier");
 const totalElement = document.querySelector("#total");
 const cartCount = document.querySelector("#cart-count");
 const cartCountLabel = document.querySelector("#cart-count-label");
 const cartPanel = document.querySelector(".cart-panel");
 const cartToggle = document.querySelector(".cart-toggle");
-const cart = [];
 
-const labelFor = (value) => ({
-    feu: "Feu", eau: "Eau", terre: "Terre", air: "Air",
-    foudre: "Foudre", glace: "Glace", ombre: "Ombre",
-    lumiere: "Lumière", tous: "Tous les éléments"
-}[value] || value);
-function renderBoosters() {
-    productList.innerHTML = boosters.map((booster) => `
-        <article class="booster-product">
-            
-            <div class="booster-scene" role="button" tabindex="0" aria-label="Afficher les détails de ${booster.name}" aria-expanded="false">
-                <div class="booster-flipper">
-                    <div class="booster-face booster-front">
-                        <img src="${booster.image}" alt="" loading="lazy">
-                        <div class="front-shade"></div>
-                        <div class="pack-brand"><span class="brand-seal">✦</span> MYTHORIA</div>
-                        <div class="front-copy">
-                            <p>${booster.category}</p>
-                            <h2>${booster.name}</h2>
-                            <span class="element-tag">${labelFor(booster.element)}</span>
-                        </div>
-                        <span class="cards-count">${booster.cardsCount} cartes</span>
-                    </div>
+let cart = JSON.parse(localStorage.getItem("mythoria-cart")) || [];
 
-                    <div class="booster-face booster-back">
-                        <p class="back-category">${booster.category}</p>
-                        <h2>${booster.name}</h2>
-                        <p class="back-element">Élément : ${labelFor(booster.element)}</p>
-                        <p class="back-count">${booster.cardsCount} cartes dans ce pack</p>
-                        <p class="booster-description">${booster.description}</p>
-                        <strong class="back-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</strong>
-                        <button type="button" class="ajouter" data-id="${booster.id}">Ajouter au panier</button>
-                        <span class="tap-hint">Cliquez pour retourner</span>
-                    </div>
-                </div>
-            </div>
-            <p class="booster-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</p>
-        </article>
-    `).join("");
+function saveCart() {
+    localStorage.setItem("mythoria-cart", JSON.stringify(cart));
 }
 
 function renderCart() {
+    if (!cartList) return;
+
     if (cart.length === 0) {
         cartList.innerHTML = `
             <li class="cart-empty">
@@ -161,62 +157,144 @@ function renderCart() {
                 <img src="${item.image}" alt="">
                 <span class="cart-item-name">${item.name}<small>${item.cardsCount} cartes</small></span>
                 <strong>${item.price} DH</strong>
-                <button type="button" class="supprimer" data-index="${index}" aria-label="Retirer ${item.name}">Retire du panier</button>
+                <button type="button" class="supprimer" data-index="${index}" aria-label="Retirer ${item.name}">×</button>
             </li>`).join("");
     }
 
-      totalElement.textContent = cart.reduce((sum, item) => sum + item.price, 0);
-    cartCount.textContent = cart.length;
-    cartCountLabel.textContent = cart.length;
+    if (totalElement) totalElement.textContent = cart.reduce((sum, item) => sum + item.price, 0);
+    if (cartCount) cartCount.textContent = cart.length;
+    if (cartCountLabel) cartCountLabel.textContent = cart.length;
 }
 
-function toggleBooster(scene) {
-    const flipped = scene.classList.toggle("is-flipped");
-    scene.setAttribute("aria-expanded", String(flipped));
+function openCart() {
+    if (!cartPanel || !cartToggle) return;
+    cartPanel.classList.add("is-open");
+    cartToggle.setAttribute("aria-expanded", "true");
 }
 
-productList.addEventListener("click", (event) => {
-    const addButton = event.target.closest(".ajouter");
-    if (addButton) {
-        const booster = boosters.find((item) => item.id === Number(addButton.dataset.id));
-        if (!booster) return;
-        cart.push(booster);
-        renderCart();
-        cartPanel.classList.add("is-open");
-        cartToggle.setAttribute("aria-expanded", "true");
-        return;
-    }
-    const scene = event.target.closest(".booster-scene");
-    if (scene) toggleBooster(scene);
-});
+function closeCart() {
+    if (!cartPanel || !cartToggle) return;
+    cartPanel.classList.remove("is-open");
+    cartToggle.setAttribute("aria-expanded", "false");
+}
 
-productList.addEventListener("keydown", (event) => {
-    const scene = event.target.closest(".booster-scene");
-    if (!event.target.closest(".ajouter") && scene && (event.key === "Enter" || event.key === " ")) {
-        event.preventDefault();
-        toggleBooster(scene);
-    }
-});
-
-
-cartToggle.addEventListener("click", () => {
-    const open = cartPanel.classList.toggle("is-open");
-    cartToggle.setAttribute("aria-expanded", String(open));
-});
-
-cartList.addEventListener("click", (event) => {
-    const removeButton = event.target.closest(".supprimer");
-    if (!removeButton) return;
-    cart.splice(Number(removeButton.dataset.index), 1);
+function addToCart(booster) {
+    cart.push(booster);
+    saveCart();
     renderCart();
+    openCart();
+}
+
+if (cartToggle && cartPanel) {
+    cartToggle.addEventListener("click", () => {
+        if (cartPanel.classList.contains("is-open")) {
+            closeCart();
+        } else {
+            openCart();
+            setMenu(false);
+        }
+    });
+}
+
+if (cartList) {
+    cartList.addEventListener("click", (e) => {
+        const removeButton = e.target.closest(".supprimer");
+        if (!removeButton) return;
+        cart.splice(Number(removeButton.dataset.index), 1);
+        saveCart();
+        renderCart();
+    });
+}
+
+renderCart();
+
+/* =========================================================
+   4. FERMETURES GLOBALES (clic en dehors, Échap)
+   ========================================================= */
+document.addEventListener("click", (e) => {
+    if (!e.target.closest(".cart-menu")) closeCart();
+    if (!e.target.closest(".navbar")) setMenu(false);
 });
 
-document.addEventListener("click", (event) => {
-    if (!event.target.closest(".cart-menu")) {
-        cartPanel.classList.remove("is-open");
-        cartToggle.setAttribute("aria-expanded", "false");
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+        setMenu(false);
+        closeCart();
     }
 });
 
-renderBoosters();
-renderCart();
+/* =========================================================
+   5. PAGE BOUTIQUE (seulement si .list-carts existe)
+   ========================================================= */
+const productList = document.querySelector(".list-carts");
+
+if (productList) {
+    const labelFor = (value) => ({
+        feu: "Feu", eau: "Eau", terre: "Terre", air: "Air",
+        foudre: "Foudre", glace: "Glace", ombre: "Ombre",
+        lumiere: "Lumière", tous: "Tous les éléments"
+    }[value] || value);
+
+    productList.innerHTML = boosters.map((booster) => `
+        <article class="booster-product">
+            <p class="booster-price">${booster.price} DH</p>
+            <div class="booster-scene" role="button" tabindex="0" aria-label="Afficher les détails de ${booster.name}" aria-expanded="false">
+                <div class="booster-flipper">
+                    <div class="booster-face booster-front">
+                        <img src="${booster.image}" alt="" loading="lazy">
+                        <div class="front-shade"></div>
+                        <div class="pack-brand"><span class="brand-seal">✦</span> MYTHORIA</div>
+                        <div class="front-copy">
+                            <p>${booster.category}</p>
+                            <h2>${booster.name}</h2>
+                            <span class="element-tag">${labelFor(booster.element)}</span>
+                        </div>
+                        <span class="cards-count">${booster.cardsCount} cartes</span>
+                    </div>
+                    <div class="booster-face booster-back">
+                        <p class="back-category">${booster.category}</p>
+                        <h2>${booster.name}</h2>
+                        <p class="back-element">Élément : ${labelFor(booster.element)}</p>
+                        <p class="back-count">${booster.cardsCount} cartes dans ce pack</p>
+                        <p class="booster-description">${booster.description}</p>
+                        <strong class="back-price">${booster.price} DH</strong>
+                        <button type="button" class="ajouter" data-id="${booster.id}">Ajouter au panier</button>
+                        <span class="tap-hint">Cliquez pour retourner</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+    `).join("");
+
+    productList.addEventListener("click", (event) => {
+        const addButton = event.target.closest(".ajouter");
+        if (addButton) {
+            const booster = boosters.find((b) => b.id === Number(addButton.dataset.id));
+            if (booster) addToCart(booster);
+            return;
+        }
+
+        const scene = event.target.closest(".booster-scene");
+        if (scene) {
+            const flipped = scene.classList.toggle("is-flipped");
+            scene.setAttribute("aria-expanded", flipped);
+        }
+    });
+
+    productList.addEventListener("keydown", (event) => {
+        const scene = event.target.closest(".booster-scene");
+        if (scene && !event.target.closest(".ajouter") && (event.key === "Enter" || event.key === " ")) {
+            event.preventDefault();
+            scene.click();
+        }
+    });
+}
+
+/* =========================================================
+   6. PAGE D'ACCUEIL (seulement si l'élément existe)
+   ========================================================= */
+const homeLegendaires = document.querySelector("#home-legendaires");
+
+if (homeLegendaires) {
+    /* ton code des cartes légendaires ici (s'il est encore en JS) */
+}
