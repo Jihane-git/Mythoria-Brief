@@ -160,7 +160,7 @@ function renderCart() {
                 <img src="${item.image}" alt="">
                 <span class="cart-item-name">${item.name}<small>${item.cardsCount} cartes</small></span>
                 <strong>${item.price} DH</strong>
-                <button type="button" class="supprimer" data-index="${index}" aria-label="Retirer ${item.name}">×</button>
+                <button type="button" class="supprimer" data-index="${index}" aria-label="Retirer ${item.name}">Retire du panier</button>
             </li>`).join("");
     }
 

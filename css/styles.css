@@ -318,10 +318,10 @@ a{
     min-width: 21px;
     height: 21px;
     padding: 0 5px;
-    border-radius: 50%;
-    background: #e74c3c;
-    color: white;
-}
+    background: transparent;
+    color: white; 
+    font-family: 'Times New Roman', Times, serif;
+} 
 
 .cart-panel {
     position: absolute;
@@ -364,10 +364,7 @@ a{
     font-size: 1.2rem;
 }
 
-#cart-count-label {
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
+
 
 #items-panier {
     display: flex;
@@ -380,4 +377,84 @@ a{
 
 #items-panier li {
     overflow-wrap: anywhere;
+}
+
+.cart-empty {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.cart-empty p {
+    margin-bottom: 5px;
+    color: var(--text);
+}
+
+.cart-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+.cart-total strong {
+    color: var(--gold);
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(11, 11, 15, 0.9),
+        transparent 70%
+    );
+    pointer-events: none;
+}
+
+/* Shop */ 
+
+.shop-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 320px;
+    padding: 145px 20px 45px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            ellipse at top,
+            rgba(91, 45, 125, 0.28),
+            transparent 70%
+        ),
+        var(--background);
+}
+
+
+.shop-hero .eyebrow {
+    color: var(--gold-light);
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+} 
+
+.shop-hero h1 {
+    color: var(--gold);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+}
+
+.shop-hero > p:last-child {
+    max-width: 600px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
