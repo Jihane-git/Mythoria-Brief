@@ -654,3 +654,286 @@ a{
     font-size: 0.75rem;
     font-weight: 700;
 }
+
+
+.booster-back {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    padding: 22px;
+
+    transform: rotateY(180deg);
+
+    background: radial-gradient(
+        ellipse at 50% 20%,
+        #49382f,
+        #1b1518 72%
+    );
+
+    color: var(--text);
+    text-align: center;
+}
+
+.back-category {
+    margin: 0;
+    color: var(--gold);
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.booster-back h2 {
+    margin: 0;
+    color: var(--gold-light);
+    font-family: var(--font-main);
+    font-size: 1.25rem;
+    line-height: 1.25;
+}
+
+.back-element,
+.back-count {
+    margin: 0;
+    color: #d3c8bd;
+    font-size: 0.8rem;
+}
+
+.booster-description {
+    margin: 4px 0;
+    color: #d5cbd0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+.back-price {
+    color: var(--gold);
+    font-size: 1.15rem;
+    font-weight: 700;
+}
+
+
+/* BOUTON AJOUTER AU PANIER */
+
+.booster-back .ajouter {
+    width: 100%;
+    max-width: 190px;
+    padding: 12px 15px;
+
+    border: 1px solid #f4d89f;
+    border-radius: 7px;
+
+    background: linear-gradient(135deg, #f0d49d, #bb8846);
+    color: #24190e;
+
+    font-weight: 800;
+    cursor: pointer;
+
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.booster-back .ajouter:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.12);
+}
+
+.booster-back .ajouter:active {
+    transform: scale(0.97);
+}
+
+/* Le bouton ne peut être utilisé que sur la face arrière */
+
+.booster-scene:not(.is-flipped) .ajouter {
+    pointer-events: none;
+}
+
+.tap-hint {
+    color: #a69b97;
+    font-size: 0.68rem;
+}
+
+
+/* ========================================
+   12. RESPONSIVE : TABLETTES
+======================================== */
+
+@media (max-width: 1000px) {
+    .navbar {
+        width: 96%;
+        gap: 12px;
+        padding: 10px 16px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+    }
+
+    .cards-container,
+    .list-carts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .booster-scene {
+        height: 380px;
+    }
+}
+
+
+/* ========================================
+   13. RESPONSIVE : MOBILES
+======================================== */
+
+@media (max-width: 600px) {
+    .navbar {
+        top: 8px;
+
+        width: 96%;
+        padding: 10px 12px;
+
+        border-radius: 18px;
+    }
+
+    .logo {
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 0.68rem;
+    }
+
+    .nav-button {
+        width: 38px;
+        height: 38px;
+    }
+
+    .nav-button svg {
+        width: 27px;
+        height: 27px;
+    }
+
+    .cart-panel {
+        right: -3px;
+        width: min(330px, 88vw);
+    }
+
+    .Section-buttons {
+        background-attachment: scroll;
+    }
+
+    .Buttons-Home {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn-boosters,
+    .btn-grimoire {
+        width: min(100%, 280px);
+    }
+
+    .card-section {
+        padding: 45px 15px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card {
+        height: 190px;
+    }
+
+    .card h3 {
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+        font-size: 0.85rem;
+    }
+
+    .card p {
+        padding: 10px;
+        font-size: 0.75rem;
+    }
+
+    .shop-hero {
+        min-height: 290px;
+        padding: 150px 15px 35px;
+    }
+
+    .shop-layout {
+        padding: 25px 16px 55px;
+    }
+
+    .list-carts {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        width: min(100%, 340px);
+        margin: 0 auto;
+    }
+
+    .booster-scene {
+        height: 420px;
+    }
+}
+
+
+/* ========================================
+   14. PETITS ÉCRANS
+======================================== */
+
+@media (max-width: 360px) {
+    .navbar {
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .logo {
+        font-size: 0.82rem;
+    }
+
+    .nav-links {
+        gap: 5px;
+    }
+
+    .nav-links a {
+        font-size: 0.6rem;
+    }
+
+    .cards-container {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        height: 220px;
+    }
+
+    .booster-scene {
+        height: 360px;
+    }
+}
+
+
+/* ========================================
+   15. ACCESSIBILITÉ : RÉDUIRE LES ANIMATIONS
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
