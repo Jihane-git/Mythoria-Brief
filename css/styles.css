@@ -250,13 +250,9 @@ section {
         transition: none;
     }
 }
+/* _________________________________________________________*/
 
 .list-carts{
     display: flex;
  
 }
-.card{
-    width: 100px;
-    height: 300px;
-}
-

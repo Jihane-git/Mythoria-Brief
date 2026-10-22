@@ -101,58 +101,120 @@ const boosters = [
 const productList = document.querySelector(".list-carts");
 const cartList = document.querySelector("#items-panier");
 const totalElement = document.querySelector("#total");
+const cartCount = document.querySelector("#cart-count");
+const cartCountLabel = document.querySelector("#cart-count-label");
+const cartPanel = document.querySelector(".cart-panel");
+const cartToggle = document.querySelector(".cart-toggle");
 const cart = [];
 
+const labelFor = (value) => ({
+    feu: "Feu", eau: "Eau", terre: "Terre", air: "Air",
+    foudre: "Foudre", glace: "Glace", ombre: "Ombre",
+    lumiere: "Lumière", tous: "Tous les éléments"
+}[value] || value);
 function renderBoosters() {
     productList.innerHTML = boosters.map((booster) => `
-        <article class="booster-item" data-id="${booster.id}">
-            <img src="${booster.image}" alt="Illustration du booster ${booster.name}" loading="lazy" width="300px" height="100px">
-            <div class="booster-info">
-                <p class="booster-element">${booster.category} · ${booster.element}</p>
-                <h3>${booster.name}</h3>
-                <p class="booster-description">${booster.description}</p>
-                <p class="booster-details">${booster.cardsCount} cartes</p>
-                <div class="booster-buy">
-                    <strong>${booster.price} DH</strong>
-                    <button type="button" class="ajouter" data-id="${booster.id}">Ajouter au panier</button>
+        <article class="booster-product">
+            <p class="booster-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</p>
+            <div class="booster-scene" role="button" tabindex="0" aria-label="Afficher les détails de ${booster.name}" aria-expanded="false">
+                <div class="booster-flipper">
+                    <div class="booster-face booster-front">
+                        <img src="${booster.image}" alt="" loading="lazy">
+                        <div class="front-shade"></div>
+                        <div class="pack-brand"><span class="brand-seal">✦</span> MYTHORIA</div>
+                        <div class="front-copy">
+                            <p>${booster.category}</p>
+                            <h2>${booster.name}</h2>
+                            <span class="element-tag">${labelFor(booster.element)}</span>
+                        </div>
+                        <span class="cards-count">${booster.cardsCount} cartes</span>
+                    </div>
+
+                    <div class="booster-face booster-back">
+                        <p class="back-category">${booster.category}</p>
+                        <h2>${booster.name}</h2>
+                        <p class="back-element">Élément : ${labelFor(booster.element)}</p>
+                        <p class="back-count">${booster.cardsCount} cartes dans ce pack</p>
+                        <p class="booster-description">${booster.description}</p>
+                        <strong class="back-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</strong>
+                        <button type="button" class="ajouter" data-id="${booster.id}">Ajouter au panier</button>
+                        <span class="tap-hint">Cliquez pour retourner</span>
+                    </div>
                 </div>
             </div>
         </article>
     `).join("");
 }
 
-
 function renderCart() {
-    cartList.innerHTML = cart.map((item, index) => `
-        <li class="cart-item">
-            <span>${item.name}</span>
-            <span>${item.price} DH</span>
-            <button type="button" class="supprimer" data-index="${index}" aria-label="Supprimer ${item.name} du panier">Retirer</button>
-        </li>
-    `).join("");
+    if (cart.length === 0) {
+        cartList.innerHTML = `
+            <li class="cart-empty">
+                <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M8 12h7l6 30h27l7-22H18M25 51a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm20 0a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/><path d="m34 17 2-3m7 2 2-4m-17 7 1-3"/></svg>
+                <p>Votre panier est vide</p>
+                <span>Les boosters que vous choisirez apparaîtront ici.</span>
+            </li>`;
+    } else {
+        cartList.innerHTML = cart.map((item, index) => `
+            <li class="cart-item">
+                <img src="${item.image}" alt="">
+                <span class="cart-item-name">${item.name}<small>${item.cardsCount} cartes</small></span>
+                <strong>${item.price} DH</strong>
+                <button type="button" class="supprimer" data-index="${index}" aria-label="Retirer ${item.name}">×</button>
+            </li>`).join("");
+    }
 
-    const total = cart.reduce((sum, item) => sum + item.price, 0);
-    totalElement.textContent = total;
+      totalElement.textContent = cart.reduce((sum, item) => sum + item.price, 0);
+    cartCount.textContent = cart.length;
+    cartCountLabel.textContent = cart.length;
 }
 
+function toggleBooster(scene) {
+    const flipped = scene.classList.toggle("is-flipped");
+    scene.setAttribute("aria-expanded", String(flipped));
+}
 
 productList.addEventListener("click", (event) => {
-    const button = event.target.closest(".ajouter");
-    if (!button) return;
+    const addButton = event.target.closest(".ajouter");
+    if (addButton) {
+        const booster = boosters.find((item) => item.id === Number(addButton.dataset.id));
+        if (!booster) return;
+        cart.push(booster);
+        renderCart();
+        cartPanel.classList.add("is-open");
+        cartToggle.setAttribute("aria-expanded", "true");
+        return;
+    }
+    const scene = event.target.closest(".booster-scene");
+    if (scene) toggleBooster(scene);
+});
 
-    const booster = boosters.find((item) => item.id === Number(button.dataset.id));
-    if (!booster) return;
+productList.addEventListener("keydown", (event) => {
+    const scene = event.target.closest(".booster-scene");
+    if (!event.target.closest(".ajouter") && scene && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        toggleBooster(scene);
+    }
+});
 
-    cart.push(booster);
-    renderCart();
+
+cartToggle.addEventListener("click", () => {
+    const open = cartPanel.classList.toggle("is-open");
+    cartToggle.setAttribute("aria-expanded", String(open));
 });
 
 cartList.addEventListener("click", (event) => {
-    const button = event.target.closest(".supprimer");
-    if (!button) return;
-
-    cart.splice(Number(button.dataset.index), 1);
+    const removeButton = event.target.closest(".supprimer");
+    if (!removeButton) return;
+    cart.splice(Number(removeButton.dataset.index), 1);
     renderCart();
+});
+
+document.addEventListener("click", (event) => {
+    if (!event.target.closest(".cart-menu")) {
+        cartPanel.classList.remove("is-open");
+        cartToggle.setAttribute("aria-expanded", "false");
+    }
 });
 
 renderBoosters();
