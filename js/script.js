@@ -115,7 +115,7 @@ const labelFor = (value) => ({
 function renderBoosters() {
     productList.innerHTML = boosters.map((booster) => `
         <article class="booster-product">
-            <p class="booster-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</p>
+            
             <div class="booster-scene" role="button" tabindex="0" aria-label="Afficher les détails de ${booster.name}" aria-expanded="false">
                 <div class="booster-flipper">
                     <div class="booster-face booster-front">
@@ -142,6 +142,7 @@ function renderBoosters() {
                     </div>
                 </div>
             </div>
+            <p class="booster-price">${booster.price === 0 ? "Gratuit" : `${booster.price} DH`}</p>
         </article>
     `).join("");
 }
