@@ -753,6 +753,27 @@ a{
     font-size: 0.68rem;
 }
 
+.supprimer{
+    background-color: var(--gold);
+    color: var(--background);
+}
+
+.image-panier{
+    width: 40px;
+    height: 40px;
+}
+
+.cart-item{
+    display: flex;
+    gap: 20px;
+}
+
+.supprimer{
+    font-size: 10px;
+    width: 20px;
+    height: 20px;
+
+}
 
 /* ========================================
    12. RESPONSIVE : TABLETTES
