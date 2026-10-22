@@ -570,7 +570,6 @@ a{
 .front-shade {
     position: absolute;
     inset: 0;
-
     background: linear-gradient(
         180deg,
         rgba(22, 14, 11, 0.8),
