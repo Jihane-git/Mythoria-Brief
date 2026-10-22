@@ -113,11 +113,17 @@ a{
     display: inline-block;
     padding: 14px 28px;
     font-weight: 700;
-    background-color: linear-gradient(135deg, #ffe76a, #c99827);;
+    background: linear-gradient(135deg, #ffe76a, #c99827);;
     color: #171321;
     border-radius: 6px;
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn-boosters:hover,
+.btn-grimoire:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
 }
 
 /*___________________________second section_______________________________________ */
@@ -458,3 +464,51 @@ a{
     color: var(--text-muted);
     font-size: 0.95rem;
 }
+
+/* Boutique */
+
+.shop-layout {
+    width: min(100%, 1280px);
+    margin: 0 auto;
+    padding: 35px 24px 80px;
+}
+
+.section-heading {
+    margin-bottom: 35px;
+    text-align: center;
+}
+
+.section-heading h2 {
+    margin-bottom: 10px;
+    color: var(--gold);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.section-heading p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.list-carts {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    align-items: start;
+    gap: 25px;
+} 
+
+
+.booster-product {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+}
+
+.booster-price {
+    margin: 14px 0 0;
+    color: #ff694f;
+    font-family: ui-monospace, monospace;
+    font-size: 1.25rem;
+    font-weight: 700;
+} 
+
+
