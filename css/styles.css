@@ -1,13 +1,33 @@
+:root {
+    --background: #0b0b0f;
+    --background-card: #17131e;
+    --purple: rgba(80, 40, 120, 0.65);
+    --purple-light: #9b70cf;
+    --gold: #ffd700;
+    --gold-light: #f3d7ae;
+    --text: #efe6cf;
+    --text-muted: #b9adbd;
+    --border: rgba(243, 215, 174, 0.4);
+    --font-main: "Isometra", Georgia, serif;
+}
+
 * { 
     box-sizing: border-box;
-    font-family: "Isometra", serif;
-    font-weight: 400;
-    font-style: normal;
+    margin: 0;
+    padding: 0;
 }
  body{ 
-    margin: 0; 
-    background: #0B0B0F; 
-    color: #EFE6CF; 
+    margin: 100vh; 
+    background: var(--background); 
+    color:  var(--text); 
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+}
+
+html {
+    scroll-behavior: smooth;
 }
   
 /* PAGE HOME */
