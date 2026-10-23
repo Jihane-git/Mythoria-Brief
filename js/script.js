@@ -296,5 +296,5 @@ if (productList) {
 const homeLegendaires = document.querySelector("#home-legendaires");
 
 if (homeLegendaires) {
-    /* ton code des cartes légendaires ici (s'il est encore en JS) */
+
 }
