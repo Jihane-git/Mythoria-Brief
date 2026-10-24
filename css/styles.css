@@ -433,7 +433,7 @@ a{
     color: var(--gold-light);
     font-size: 0.85rem;
     letter-spacing: 3px;
-    text-transform: uppercase;
+    text-transform: uppercase; 
 } 
 
 .shop-hero h1 {
@@ -1014,4 +1014,15 @@ a{
     top:calc(100% + 8px);
     right:12px
 }
+}
+
+.eyebrow-room{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.titre-room{
+    color: var(--gold);
+    margin: 30px;
 }

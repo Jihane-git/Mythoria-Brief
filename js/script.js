@@ -63,9 +63,7 @@ if (burger && navLinks) {
     });
 }
 
-/* =========================================================
-   3. PANIER (toutes les pages, sauvegardé entre les pages)
-   ========================================================= */
+/*  PANIER (toutes les pages, sauvegardé entre les pages) */
 const cartList = document.querySelector("#items-panier");
 const totalElement = document.querySelector("#total");
 const cartCount = document.querySelector("#cart-count");
