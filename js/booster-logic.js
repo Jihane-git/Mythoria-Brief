@@ -35,23 +35,23 @@ const cards = [
 function openBooster(booster, collection = cards) {
   const eligibleCards = getEligibleCards(booster, collection);
 
-    if (eligibleCards.length < booster.cardsCount) {
-      throw new Error(
-      `Pas assez de cartes éligibles pour ${booster.name}.`
-    );
+  if (eligibleCards.length === 0) {
+    throw new Error(`Aucune carte éligible pour ${booster.name}.`);
   }
 
+  // Sans doublons si assez de cartes, sinon avec remise
+  const allowDuplicates = eligibleCards.length < booster.cardsCount;
   const availableCards = [...eligibleCards];
   const pulledCards = [];
 
   for (let i = 0; i < booster.cardsCount; i++) {
-    const selectedCard = drawOneCard(availableCards);
-    pulledCards.push(selectedCard);
-    const selectedIndex = availableCards.findIndex(card => {
-      return card.id === selectedCard.id;
-    });
+    const selectedCard = drawOneCard(allowDuplicates ? eligibleCards : availableCards);
+    pulledCards.push({ ...selectedCard });
 
-    availableCards.splice(selectedIndex, 1);
+    if (!allowDuplicates) {
+      const selectedIndex = availableCards.findIndex(c => c.id === selectedCard.id);
+      availableCards.splice(selectedIndex, 1);
+    }
   }
 
   return pulledCards;

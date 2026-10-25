@@ -44,48 +44,38 @@ function displayCards(cardsToDisplay, container) {
 
 function handleOpenBooster(event) {
   const button = event.target.closest(".openBooster");
-
   if (!button) return;
 
-  const boosterId = Number(button.dataset.id);
+  const boosterIndex = Number(button.dataset.index);
+  const booster = MyBoosters[boosterIndex];
 
-  const boosterIndex = MyBoosters.findIndex(booster => {
-    return booster.id === boosterId;
-  });
-
-  if (boosterIndex === -1) {
+  if (!booster) {
     alert("Ce booster n'est plus disponible.");
     return;
   }
 
-  const booster = MyBoosters[boosterIndex];
-
   let pulledCards;
-
   try {
     pulledCards = openBooster(booster);
-    
   } catch (error) {
     alert(error.message);
     return;
   }
 
   displayCards(pulledCards, openedCardsContainer);
-
   modal.style.display = "flex";
-  
+
   myCollection.push(...pulledCards);
   saveCollection();
 
   MyBoosters.splice(boosterIndex, 1);
-
   saveMyBoosters();
 
   renderCartPanier();
-
   renderCollection();
-
 }
+
+document.addEventListener("click", handleOpenBooster);
 
 
 if (closeModal && modal) {
