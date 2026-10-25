@@ -1054,6 +1054,8 @@ a{
 }
 
 .modal-content {
+display: flex;
+flex-direction: row;
   background: #1b1630;
   padding: 25px;
   border-radius: 15px;
@@ -1071,4 +1073,13 @@ a{
   color: white;
   font-size: 30px;
   cursor: pointer;
+}
+.card-image{
+    width: 200px;
+    height: 400px;
+}
+
+.card-item{
+    display: flex;
+    flex-direction: column;
 }
