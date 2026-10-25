@@ -19,6 +19,8 @@ function saveCollection() {
 function renderCollection() {
   displayCards(myCollection, collectionContainer);
 }
+
+
 function displayCards(cardsToDisplay, container) {
   if (!container) return;
 
@@ -40,6 +42,8 @@ function displayCards(cardsToDisplay, container) {
       <p>Rareté : ${card.rarity}</p>
     </article>
   `).join("");
+
+
 }
 
 function handleOpenBooster(event) {
