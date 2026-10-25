@@ -91,19 +91,19 @@ function renderCartPanier(){
     `;
   } else{
     boostersRoom.innerHTML = MyBoosters.map((item, index)=> `
-      <article class="booster-product">
+      <article class="booster-p-items">
             
-            <div class="booster-scene" role="button" tabindex="0" aria-label="Afficher les détails de ${item.name}" aria-expanded="false">
-                <div class="booster-flipper">
-                    <div class="booster-face booster-front">
+            <div class="booster-p-scene " role="button"  tabindex="0" aria-label="Afficher les détails de ${item.name}" aria-expanded="false">
+                <div class="booster-p-flipper">
+                    <div class="booster-p-image">
                         <img src="${item.image}" alt="" loading="lazy">
                     </div>
-                    <div class="booster-face booster-back">
-                        <p class="back-category">${item.category}</p>
+                    <div class="booster-p-item">
+                        <p class="p-category">${item.category}</p>
                         <h2>${item.name}</h2>
-                        <p class="back-element">Élément : ${item.element}</p>
-                        <p class="back-count">${item.cardsCount} cartes dans ce pack</p>
-                        <p class="booster-description">${item.description}</p>
+                        <p class="p-element">Élément : ${item.element}</p>
+                        <p class="p-count">${item.cardsCount} cartes dans ce pack</p>
+                        <p class="p-description">${item.description}</p>
                         <button type="button" class="openBooster" data-index="${index}">Ouvrir le booster</button>
                     </div>
                 </div>
@@ -183,6 +183,10 @@ function validerPanier(){
   saveCart();
   renderCart();
   renderCartPanier()
+
+
+    alert("Vos boosters ajouter dans votre collection, open *opening chambre* pour voir vos carts !"); 
+
 }
 if (validerButton){
 validerButton.addEventListener("click", validerPanier);
@@ -208,8 +212,6 @@ if (cartList) {
         renderCart();
     });
 }
-
-
 
 /* FERMETURES GLOBALES )  */
 document.addEventListener("click", (e) => {
@@ -281,3 +283,5 @@ if (productList) {
     });
 }
                                                
+renderCart();
+renderCartPanier();

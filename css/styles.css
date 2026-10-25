@@ -1026,3 +1026,18 @@ a{
     color: var(--gold);
     margin: 30px;
 }
+
+/* =====================================*/
+
+.boosters-room{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+
+    box-sizing: border-box;
+
+}
+.booster-p-items{
+      border: var(--gold) solid 2px;
+      border-radius: 15px;
+}
