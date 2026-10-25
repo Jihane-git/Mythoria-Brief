@@ -1,6 +1,9 @@
 const openedCardsContainer = document.querySelector("#opened-cards");
 const collectionContainer = document.querySelector("#my-collection");
 
+const modal = document.querySelector("#myModal");
+const closeModal = document.querySelector(".close");
+
 let myCollection = JSON.parse(
   localStorage.getItem("mythoria-collection")
 ) || [];
@@ -83,3 +86,22 @@ function handleOpenBooster(event) {
   renderCollection();
 
 }
+
+
+if (closeModal && modal) {
+  closeModal.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+} 
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".openBooster")) {
+    console.log("CLIC OUVRIR DÉTECTÉ");
+  }
+})
