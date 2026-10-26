@@ -1083,3 +1083,97 @@ flex-direction: row;
     display: flex;
     flex-direction: column;
 }
+
+
+/* ===== GRIMOIRE ===== */
+
+.page-grimoire {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #0B0718;
+    color: var(--gold-light);
+    background-image: url(../images/background-grimoire.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.main-grimoire {
+    display: grid;
+    grid-template-columns: 300fr 760fr 443fr;
+    gap: 8px;
+
+    height: 817px;
+    padding: 0 43px;
+}
+
+
+.sidebar {
+    background-image: url("../images/backgorund-sidebar.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+}
+
+.milieu-section {
+    background-image: url("../images/background-milieu.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+}
+
+/* =====  DROIT ===== */
+
+.details-section {
+    background-image: url("../images/background-droit.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+    box-sizing: border-box;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 1200px) {
+    .main-grimoire {
+        grid-template-columns: 240px minmax(0, 1fr);
+    }
+
+    .details-section {
+        grid-column: 1 / -1;
+        min-height: 500px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 700px) {
+    .main-grimoire {
+        grid-template-columns: minmax(0, 1fr);
+        width: 94%;
+        margin-top: 90px;
+    }
+
+    .sidebar {
+        min-height: 400px;
+    }
+
+    .milieu-section {
+        padding: 70px 20px 30px;
+    }
+
+    .details-section {
+        grid-column: auto;
+        min-height: 500px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+}
