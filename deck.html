@@ -7,10 +7,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/deck.css">
-
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/deck.js" defer></script>
 
     <title>My Deck — Mythoria</title>
@@ -19,138 +18,176 @@
 <body class="page-deck">
 
     <nav class="navbar">
-        <a href="index.html" class="logo">MYTHORIA</a>
+            <a href="index.html" class="logo">MYTHORIA</a>
 
-        <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Booster Shop</a></li>
-            <li><a href="opening.html">Opening Chamber</a></li>
-            <li><a href="grimoire.html">My Grimoire</a></li>
-            <li><a href="deck.html" class="active">My Deck</a></li>
-        </ul>
-    </nav>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shop.html">Booster Shop</a></li>
+                <li><a href="opening.html">Opening Chamber</a></li>
+                <li><a href="grimoire.html">My Grimoire</a></li>
+                <li><a href="deck.html">My Deck</a></li>
+            </ul>
 
-    <main class="deck-page">
+            <div class="nav-actions">
+                <div class="cart-menu">
+                    <button
+                        type="button"
+                        class="nav-button cart-toggle"
+                        aria-label="Ouvrir le panier"
+                        aria-expanded="false"
+                        aria-controls="panier"
+                    >
+                        <svg fill="#000000" viewBox="0 0 32 32" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><title></title><path d="M26.44,9.11,10.25,10a1.3,1.3,0,0,0-.42.1C9,7.49,8.21,7.36,5.41,7.19c-1.61-.1-1.6,2.4,0,2.5s1.64.29,2.23,1.78c.42,1.09.66,2.29,1,3.41.14.47.27.95.41,1.42a.88.88,0,0,0,.05.15c.45,1.58.9,3.16,1.32,4.75a1.17,1.17,0,0,0,1.21,1.26l1.91,0a1.23,1.23,0,1,0,2.27,0l2.8,0a1.23,1.23,0,1,0,2.25,0,4.13,4.13,0,0,0,2.47-.54c1-.77,1.61-3.14,2.08-4.34a68.54,68.54,0,0,0,2.25-6.85A1.26,1.26,0,0,0,26.44,9.11ZM21.7,19.89c-.92.51-3.86,0-4.95,0L12.66,20c-.25-.91-.5-1.82-.76-2.73l6.69-.94c1.59-.22.91-2.63-.66-2.41l-6.71.94-.69-2.35,14.22-.76c-.28,1-.59,2-.92,2.92C23.41,15.81,22.7,19.33,21.7,19.89Z"></path></g></svg>
+                        <span class="cart-count" id="cart-count">0</span>
+                    </button>
 
-        <header class="deck-header">
-            <p class="deck-eyebrow">YOUR COMBAT DESTINY</p>
-            <h1>MY DECK</h1>
-            <p class="deck-subtitle">
+                    <aside class="cart-panel" id="panier" aria-labelledby="cart-title">
+                        <div class="cart-heading">
+                            <h2 id="cart-title">Mon panier</h2>
+                            <span>
+                                <span id="cart-count-label">0</span>
+                                article(s)
+                            </span>
+                        </div>
+
+                        <ul id="items-panier">
+                            <li class="cart-empty">
+                                <p>Votre panier est vide</p>
+                                <span>Les boosters choisis apparaîtront ici.</span>
+                            </li>
+                        </ul>
+
+                        <p class="cart-total">
+                            Total :
+                            <strong><span id="total">0</span> DH</strong>
+                        </p>
+                        <button class="valider-button" type="button" data-id="${booster.id}" ></button>
+                    </aside>
+                </div>
+
+                <!-- Bouton burger -->
+                <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav-links">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+
+    <main class="mx-auto max-w-7xl px-4 py-10">
+
+        <!-- Header -->
+        <section class="mb-8 rounded-xl border border-purple-900 bg-[#17131F] p-6">
+            <p class="mb-2 text-sm uppercase tracking-widest text-[#D4AF37]">
+                Your combat destiny
+            </p>
+
+            <h1 class="text-4xl font-bold">My Deck</h1>
+
+            <p class="mt-3 text-gray-400">
                 Choisissez vos cartes et préparez votre stratégie.
             </p>
 
-            <div class="deck-progress">
-                <div class="deck-progress-info">
+            <div class="mt-6">
+                <div class="mb-2 flex justify-between text-sm">
                     <span>Cartes sélectionnées</span>
-                    <strong id="deck-count">0 / 20</strong>
+                    <strong id="deck-count" class="text-[#D4AF37]">0 / 20</strong>
                 </div>
 
-                <div
-                    class="deck-progress-track"
-                    role="progressbar"
-                    aria-label="Remplissage du deck"
-                    aria-valuemin="0"
-                    aria-valuemax="20"
-                    aria-valuenow="0"
-                    id="deck-progress"
-                >
-                    <div class="deck-progress-fill" id="deck-progress-fill"></div>
+                <div id="deck-progress"
+                     role="progressbar"
+                     aria-label="Remplissage du deck"
+                     aria-valuemin="0"
+                     aria-valuemax="20"
+                     aria-valuenow="0"
+                     class="h-2 overflow-hidden rounded-full bg-gray-700">
+                    <div id="deck-progress-fill"
+                         class="h-full rounded-full bg-[#D4AF37]"
+                         style="width: 0%">
+                    </div>
                 </div>
             </div>
-        </header>
+        </section>
 
-        <div class="deck-layout">
+        <!-- Main layout -->
+        <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-4">
 
-            <aside class="deck-sidebar">
-                <h2>Éléments</h2>
+            <!-- Filters -->
+            <aside class="rounded-xl border border-gray-800 bg-[#13111A] p-4">
+                <h2 class="mb-4 text-xl font-semibold text-[#D4AF37]">
+                    Éléments
+                </h2>
 
-                <div class="deck-filters">
-                    <button
-                        type="button"
-                        class="deck-filter active"
-                        data-filter="all"
-                    >
-                        <span>✧ Toutes les cartes</span>
+                <div class="deck-filters flex flex-col gap-2">
+
+                    <button type="button"
+                        class="deck-filter active flex justify-between rounded-lg bg-purple-900/30 px-3 py-3 text-left"
+                        data-filter="all">
+                        <span>Toutes les cartes</span>
                         <span id="filter-count-all">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="feu">
-                        <span>Feu</span>
-                        <span data-filter-count="feu">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="feu">
+                        <span>Feu</span><span data-filter-count="feu">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="eau">
-                        <span>Eau</span>
-                        <span data-filter-count="Eau">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="eau">
+                        <span>Eau</span><span data-filter-count="eau">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="terre">
-                        <span>Terre</span>
-                        <span data-filter-count="Terre">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="terre">
+                        <span>Terre</span><span data-filter-count="terre">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="air">
-                        <span>Air</span>
-                        <span data-filter-count="Air">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="air">
+                        <span>Air</span><span data-filter-count="air">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="foudre">
-                        <span>Foudre</span>
-                        <span data-filter-count="Foudre">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="foudre">
+                        <span>Foudre</span><span data-filter-count="foudre">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="glace">
-                        <span>Glace</span>
-                        <span data-filter-count="Glace">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="glace">
+                        <span>Glace</span><span data-filter-count="glace">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="ombre">
-                        <span>Ombre</span>
-                        <span data-filter-count="Ombre">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="ombre">
+                        <span>Ombre</span><span data-filter-count="ombre">0</span>
                     </button>
 
-                    <button type="button" class="deck-filter" data-filter="lumiere">
-                        <span>Lumière</span>
-                        <span data-filter-count="Lumiere">0</span>
+                    <button type="button" class="deck-filter flex justify-between rounded-lg px-3 py-3 hover:bg-purple-900/30" data-filter="lumiere">
+                        <span>Lumière</span><span data-filter-count="lumiere">0</span>
                     </button>
-                </div>
-
-                <div class="deck-sidebar-note">
-                    <p>
-                        Chaque carte unique ne peut être présente
-                        qu'une seule fois dans ton deck.
-                    </p>
                 </div>
             </aside>
 
-            <!-- ZONE CENTRALE : CARTES DISPONIBLES -->
-            <section class="deck-collection">
-
-                <div class="deck-section-heading">
+            <!-- Collection -->
+            <section class="min-w-0 lg:col-span-2">
+                <div class="mb-5 flex flex-wrap items-end justify-between gap-3">
                     <div>
-                        <p class="deck-eyebrow">YOUR COLLECTION</p>
-                        <h2>Le Grimoire</h2>
+                        <p class="mb-2 text-xs uppercase tracking-widest text-[#D4AF37]">
+                            Your collection
+                        </p>
+                        <h2 class="text-2xl font-semibold">Le Grimoire</h2>
                     </div>
 
-                    <span class="available-count" id="available-count">
+                    <span id="available-count" class="text-sm text-gray-400">
                         0 cartes
                     </span>
                 </div>
 
-                <div class="deck-toolbar">
-                    <label class="deck-search">
+                <div class="mb-4 flex flex-col gap-3 sm:flex-row">
+                    <label class="flex flex-1 items-center gap-2 rounded-lg border border-gray-800 bg-[#13111A] px-3 py-2">
                         <span aria-hidden="true">⌕</span>
-                        <input
-                            type="search"
+                        <input type="search"
                             id="deck-search"
                             placeholder="Rechercher une carte..."
                             aria-label="Rechercher une carte"
-                        >
+                            class="w-full bg-transparent text-sm outline-none">
                     </label>
 
-                    <label class="deck-sort">
-                        <span class="visually-hidden">Trier par</span>
-                        <select id="deck-sort">
+                    <label>
+                        <span class="sr-only">Trier par</span>
+                        <select id="deck-sort"
+                            class="w-full rounded-lg border border-gray-800 bg-[#13111A] px-3 py-2 text-sm sm:w-auto">
                             <option value="rarity">Rareté</option>
                             <option value="name">Nom</option>
                             <option value="element">Élément</option>
@@ -158,79 +195,79 @@
                     </label>
                 </div>
 
-                <p class="deck-feedback" id="deck-feedback" role="status" aria-live="polite"></p>
+                <p id="deck-feedback" role="status" aria-live="polite"
+                    class="mb-3 text-sm text-[#D4AF37]"></p>
 
-                <div class="deck-cards-grid" id="available-cards"></div>
-
+                <div id="available-cards"
+                    class="deck-cards-grid grid grid-cols-2 gap-4 sm:grid-cols-3">
+                </div>
             </section>
 
-            <aside class="my-deck-panel">
+            <!-- Selected deck -->
+            <aside class="rounded-xl border border-purple-900 bg-[#13111A] p-4">
+                <h2 class="text-2xl font-semibold text-[#D4AF37]">Mon deck</h2>
 
-                <div class="my-deck-heading">
-                    <div>
-                        <p class="deck-eyebrow">YOUR BATTLE SETUP</p>
-                        <h2>Mon deck</h2>
-                    </div>
-
-                    <span class="deck-icon">⚔</span>
-                </div>
-
-                <p class="my-deck-description">
+                <p class="mb-5 mt-2 text-sm text-gray-400">
                     Tes cartes prêtes pour le combat.
                 </p>
 
-                <div id="selected-cards" class="selected-cards"></div>
+                <div id="selected-cards" class="selected-cards grid grid-cols-2 gap-3"></div>
 
-                <div class="deck-statistics">
-                    <h3>Statistiques</h3>
+                <!-- Statistics -->
+                <div class="mt-6 border-t border-gray-800 pt-4">
+                    <h3 class="mb-4 font-semibold">Statistiques</h3>
 
-                    <div class="deck-stat-row">
-                        <span>Cartes dans le deck</span>
-                        <strong id="stat-total">0</strong>
-                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Cartes dans le deck</span>
+                            <strong id="stat-total">0</strong>
+                        </div>
 
-                    <div class="deck-stat-row">
-                        <span>Éléments différents</span>
-                        <strong id="stat-elements">0</strong>
-                    </div>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Éléments différents</span>
+                            <strong id="stat-elements">0</strong>
+                        </div>
 
-                    <div class="deck-stat-row">
-                        <span>Cartes communes</span>
-                        <strong id="stat-common">0</strong>
-                    </div>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Cartes communes</span>
+                            <strong id="stat-common">0</strong>
+                        </div>
 
-                    <div class="deck-stat-row">
-                        <span>Cartes rares</span>
-                        <strong id="stat-rare">0</strong>
-                    </div>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Cartes rares</span>
+                            <strong id="stat-rare" class="text-blue-300">0</strong>
+                        </div>
 
-                    <div class="deck-stat-row">
-                        <span>Cartes épiques</span>
-                        <strong id="stat-epic">0</strong>
-                    </div>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Cartes épiques</span>
+                            <strong id="stat-epic" class="text-purple-400">0</strong>
+                        </div>
 
-                    <div class="deck-stat-row">
-                        <span>Cartes légendaires</span>
-                        <strong id="stat-legendary">0</strong>
+                        <div class="flex justify-between gap-2">
+                            <span class="text-gray-400">Cartes légendaires</span>
+                            <strong id="stat-legendary" class="text-[#D4AF37]">0</strong>
+                        </div>
                     </div>
                 </div>
 
-                <div class="deck-actions">
-                    <button type="button" id="save-deck" class="deck-save-button">
-                        <span>✧</span> Sauvegarder le deck
+                <!-- Buttons -->
+                <div class="deck-actions mt-6 space-y-3">
+                    <button type="button" id="save-deck"
+                        class="deck-save-button w-full rounded-lg bg-[#D4AF37] px-4 py-3 font-semibold text-[#0B0B0F] transition hover:bg-yellow-500">
+                        Sauvegarder le deck
                     </button>
 
-                    <button type="button" id="clear-deck" class="deck-clear-button">
+                    <button type="button" id="clear-deck"
+                        class="deck-clear-button w-full rounded-lg border border-gray-700 px-4 py-3 text-gray-300 transition hover:border-red-500 hover:text-red-400">
                         Vider le deck
                     </button>
                 </div>
 
-                <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
-
+                <p id="save-status" role="status" aria-live="polite"
+                    class="mt-3 text-center text-sm text-[#D4AF37]"></p>
             </aside>
 
         </div>
-
     </main>
 
 </body>
