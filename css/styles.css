@@ -1124,10 +1124,12 @@ flex-direction: row;
     background-image: url(../images/backgorund-sidebar.png);
     background-repeat: no-repeat;
     background-size: cover;
-
+    align-self: stretch;
+    box-sizing: border-box;
     border: 1px solid rgba(201, 155, 104, 0.7);
     border-radius: 8px;
 }
+
 .milieu-section {
     background-image: url(../images/background-milieu.png);
     background-repeat: no-repeat;
@@ -1136,6 +1138,7 @@ flex-direction: row;
     border: 1px solid rgba(201, 155, 104, 0.7);
     border-radius: 8px; 
 }
+
 .details-section{
     background-image: url(../images/background-droit.png);
     background-repeat: no-repeat;
@@ -1144,6 +1147,7 @@ flex-direction: row;
     border: 1px solid rgba(201, 155, 104, 0.7);
     border-radius: 8px;
 }
+
 .sidebar {
     padding: 22px 13px;
 }
@@ -1231,17 +1235,23 @@ flex-direction: row;
 .light { color: #ffe5a0; background: #ffe5a0; }
 
 /********************** milieu ******************/
-.main-grimoire
-.milieu-section {
-    margin: 20px;
-    padding: 20px;
-    height: 75vh; 
-    width: 90vh;
-    min-height: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+.main-grimoire{
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr) minmax(320px, 420px);
+    gap: 20px;
+    align-items: start;
+    max-width: 100%;
     box-sizing: border-box;
 }
+
+.milieu-section {
+    min-width: 0; 
+}
+
+.main-grimoire { display: flex; gap: 20px; }
+.sidebar { flex: 0 0 280px; }
+.milieu-section { flex: 1 1 0; min-width: 0; }
+.details-section { flex: 0 1 420px; min-width: 0; }
 
 .cards-grid {
     margin: 35px;
@@ -1301,7 +1311,12 @@ flex-direction: row;
     text-align: center;
 }
 
-
+.button-cart-deck{
+    color: var(--background);
+    background-color: var(--gold);
+    border-radius: 5px;
+    padding: 10px;
+}
 
 
 
@@ -1309,7 +1324,8 @@ flex-direction: row;
     margin: 20px;
     padding: 20px;
     height: 75vh; 
-    width: 90vh;
+    width: auto;
+    min-width: 0;
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;

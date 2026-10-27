@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/deck.css">
+    <script src="./js/booster-logic.js" defer></script>
+    <script src="./js/script.js" defer></script>
+    <script src="./js/opening.js" defer></script>    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="./js/deck.js" defer></script>
 
@@ -110,7 +113,6 @@
         <!-- Main layout -->
         <div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-4">
 
-            <!-- Filters -->
             <aside class="rounded-xl border border-gray-800 bg-[#13111A] p-4">
                 <h2 class="mb-4 text-xl font-semibold text-[#D4AF37]">
                     Éléments
@@ -174,26 +176,7 @@
                     </span>
                 </div>
 
-                <div class="mb-4 flex flex-col gap-3 sm:flex-row">
-                    <label class="flex flex-1 items-center gap-2 rounded-lg border border-gray-800 bg-[#13111A] px-3 py-2">
-                        <span aria-hidden="true">⌕</span>
-                        <input type="search"
-                            id="deck-search"
-                            placeholder="Rechercher une carte..."
-                            aria-label="Rechercher une carte"
-                            class="w-full bg-transparent text-sm outline-none">
-                    </label>
-
-                    <label>
-                        <span class="sr-only">Trier par</span>
-                        <select id="deck-sort"
-                            class="w-full rounded-lg border border-gray-800 bg-[#13111A] px-3 py-2 text-sm sm:w-auto">
-                            <option value="rarity">Rareté</option>
-                            <option value="name">Nom</option>
-                            <option value="element">Élément</option>
-                        </select>
-                    </label>
-                </div>
+                
 
                 <p id="deck-feedback" role="status" aria-live="polite"
                     class="mb-3 text-sm text-[#D4AF37]"></p>

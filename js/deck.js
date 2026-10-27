@@ -51,6 +51,7 @@ function createCard(card, isSelected){
 
     button.type = "button";
     button.textContent = isSelected ? "retire" : "ajouter au deck";
+    button.className = "button-cart-deck";
 
     button.addEventListener("click", function(){
         const index = indexcreate(card);
