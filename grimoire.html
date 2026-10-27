@@ -68,27 +68,111 @@
                 </button>
             </div>
     </nav>
+    
     <main class="main-grimoire">
         <aside class="sidebar">
-            <h3>Filtres</h3>
-            <ul>
-            <li><a>All</a><span></span></li>
-            <li><a>Feu</a><span></span></li> 
-            <li><a>Eau</a><span></span></li>
-            <li><a>Terre</a><span></span></li>
-            <li><a>Air</a><span></span></li>
-            <li><a>Foudre</a><span></span></li>
-            <li><a>Glace</a><span></span></li>
-            <li><a>Ombre</a><span></span></li>
-            <li><a>Lumiere</a><span></span></li>
-            </ul>
-        </aside>
+            <h2>Elements</h2>
+
+            <div class="filter-group">
+                <button
+                    type="button"
+                    class="filter-item active"
+                    data-filter-value="all"
+                >
+                    <span class="element-symbol">✺</span>
+                    <span>All</span>
+                    <span class="filter-count" id="count-all">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Feu"
+                >
+                    <span class="element-dot fire"></span>
+                    <span>Feu</span>
+                    <span class="filter-count" data-element-count="Feu">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Eau"
+                >
+                    <span class="element-dot water"></span>
+                    <span>Eau</span>
+                    <span class="filter-count" data-element-count="Eau">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Terre"
+                >
+                    <span class="element-dot earth"></span>
+                    <span>Terre</span>
+                    <span class="filter-count" data-element-count="Terre">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Air"
+                >
+                    <span class="element-dot air"></span>
+                    <span>Air</span>
+                    <span class="filter-count" data-element-count="Air">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Foudre"
+                >
+                    <span class="element-dot lightning"></span>
+                    <span>Foudre</span>
+                    <span class="filter-count" data-element-count="Foudre">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Glace"
+                >
+                    <span class="element-dot ice"></span>
+                    <span>Glace</span>
+                    <span class="filter-count" data-element-count="Glace">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Ombre"
+                >
+                    <span class="element-dot shadow"></span>
+                    <span>Ombre</span>
+                    <span class="filter-count" data-element-count="Ombre">0</span>
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-item"
+                    data-filter-value="Lumiere"
+                >
+                    <span class="element-dot light"></span>
+                    <span>Lumière</span>
+                    <span class="filter-count" data-element-count="Lumiere">0</span>
+                </button>
+
+            </div>
+            
+        </aside> 
         <section class="milieu-section">
-            <div class="cards-grid">
+            <div class="cards-grid" id="cards-grid">
 
             </div>
         </section>
-        <aside class="details-section">
+        <aside class="details-section" id="details" aria-label="Détails de la carte" hidden>
             <button>X</button>
             <div class="details-cart"></div>
         </aside> 
