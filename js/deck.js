@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function () {
 const maxCards= 20;
 const Cards = document.querySelector("#available-cards");
 const selectedCards = document.querySelector("#selected-cards");
@@ -38,15 +39,16 @@ function createCard(card, isSelected){
     const button = document.createElement("button");
 
     article.className = isSelected ? "selected-card" : "deck-card";
+    
     image.src= card.image || "";
-
     image.alt = card.name || "carte Mythoria";
     image.className = isSelected ? "selected-card-image" : "deck-card-image";
 
     title.textContent = card.name || "carte sans nom" ;
 
     info.textContent = (card.element || "") + "." + ( card.rarity || "");
-    
+    type.textContent = card.type || "";
+
     button.type = "button";
     button.textContent = isSelected ? "retire" : "ajouter au deck";
 
@@ -66,7 +68,7 @@ function createCard(card, isSelected){
         displayCards();
     })
 
-    article.append(image, WebTransportBidirectionalStream, info, button);
+    article.append(image, title, info, type, button);
 
     return article;
 
@@ -124,3 +126,4 @@ if (clearButton){
     });
 }
 displayCards();
+});
