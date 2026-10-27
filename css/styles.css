@@ -478,8 +478,20 @@ a{
     align-items: start;
     gap: 25px;
 } 
-
-
+.button-boosters{
+    color: var(--gold);
+    background-color: var(--purple-light);
+    width: 90px;
+    height: 40px;
+    border-radius: 15px;
+}
+.cartBoosters-item-vide{
+    display: flex;
+    margin-top: 30px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 .booster-product {
     width: 100%;
     min-width: 0;

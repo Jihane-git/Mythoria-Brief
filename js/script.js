@@ -85,14 +85,12 @@ function renderCartPanier(){
   if(MyBoosters.length === 0){
     boostersRoom.innerHTML = `
     <li class="cartBoosters-item-vide">
-      <p> vos n'avez aucun booster </p>
-      <button> <a href="shop.html"> boosters</a> </button>
+      <p> vous n'avez aucun booster!! </p>
     </li>
-    `;
-  } else{
+    `; 
+  } else{ 
     boostersRoom.innerHTML = MyBoosters.map((item, index)=> `
       <article class="booster-p-items">
-            
             <div class="booster-p-scene " role="button"  tabindex="0" aria-label="Afficher les détails de ${item.name}" aria-expanded="false">
                 <div class="booster-p-flipper">
                     <div class="booster-p-image">
@@ -207,16 +205,23 @@ if (cartList) {
     cartList.addEventListener("click", (e) => {
         const removeButton = e.target.closest(".supprimer");
         if (!removeButton) return;
+        e.stopPropagation();
         cart.splice(Number(removeButton.dataset.index), 1);
         saveCart();
         renderCart();
     });
 }
 
-/* FERMETURES GLOBALES )  */
+
 document.addEventListener("click", (e) => {
-    if (!e.target.closest(".cart-menu")) closeCart();
-    if (!e.target.closest(".navbar")) setMenu(false);
+
+    if (!e.target.closest(".cart-menu")) {
+        closeCart();
+    }
+
+    if (!e.target.closest(".navbar")) {
+        setMenu(false);
+    }
 });
 
 document.addEventListener("keydown", (e) => {
