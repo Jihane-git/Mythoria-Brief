@@ -1223,7 +1223,8 @@ flex-direction: row;
 .milieu-section {
     margin: 20px;
     padding: 20px;
-    height: 75vh;
+    height: 75vh; 
+    width: 90vh;
     min-height: 0;
     overflow-y: auto;
     overflow-x: hidden;
@@ -1288,60 +1289,143 @@ flex-direction: row;
     text-align: center;
 }
 
-/**************** Droit side ********************/
+
+
+
+
 .details-section {
     margin: 20px;
-    right: 20px;
-    width: 320px;
+    padding: 20px;
+    height: 75vh; 
+    width: 90vh;
+    min-height: 0;
     overflow-y: auto;
-    padding: 22px 18px;
-    border: 1px solid #c99b68;
-    border-radius: 10px;
-    background: rgba(8, 13, 34, 0.98);
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
 
+.ferme-details {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 10px;
+
+    width: 34px;
+    height: 34px;
+
+    border: 1px solid #c99b68;
+    border-radius: 50%;
+    background: rgba(20, 10, 45, 0.9);
+    color: #f5d6a2;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.image-g-global {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    width: 100%;
+}
+
+.image-g-details {
+    display: grid;
+    grid-template-columns: 195px minmax(0, 1fr);
+    align-items: start;
+    gap: 24px;
+    width: 100%;
+}
+
 .details-image {
-    width: 250px;
-    height: 300px;
+    display: block;
+    width: 100%;
+    height: 285px;
+    object-fit: cover;
+    border: 1px solid #c99b68;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(201, 155, 104, 0.2);
+}
+
+.image-g-details > div:last-child {
+    min-width: 0;
+    padding-top: 8px;
 }
 
 .details-rarity {
-    margin: 10px 0;
+    margin: 0 0 12px;
     color: #d6a0ff;
-    font-size: 0.8rem;
-    letter-spacing: 1px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .details-title {
-    margin: 8px 0 14px;
+    margin: 0 0 20px;
     color: #f5d6a2;
-    font-size: 1.4rem;
-    font-weight: 400;
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+    line-height: 1.3;
+    overflow-wrap: break-word;
 }
 
-.details-cart p {
-    margin: 8px 0;
+.image-g-details p:not(.details-rarity) {
+    margin: 12px 0;
+    color: #efe6cf;
+    font-size: 1rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.description-image {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 18px 16px;
+
+    border-top: 1px solid rgba(201, 155, 104, 0.6);
+    border-radius: 0 0 10px 10px;
+    background: rgba(20, 12, 48, 0.55);
 }
 
 .details-description {
-    color: #b6a9cb;
+    margin: 0;
+    color: #c9bddc;
+    font-size: 1rem;
+    line-height: 1.9;
+    overflow-wrap: anywhere;
 }
 
-.ferme-details{
-    margin-right: auto;
+@media (max-width: 480px) {
+    .details-section {
+        right: 10px;
+        width: calc(100vw - 20px);
+        max-width: none;
+        height: 85vh;
+        padding: 14px;
+    }
 
-    
+    .image-g-details {
+        grid-template-columns: 115px minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .details-image {
+        height: 175px;
+    }
+
+    .details-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .details-rarity {
+        font-size: 0.8rem;
+    }
+
+    .image-g-details p:not(.details-rarity) {
+        font-size: 0.85rem;
+    }
+
+    .description-image {
+        padding: 14px 8px;
+    }
 }
-
-/**************************** Desk ***************/
-
-
-
-.deck-page{
-    margin-top: 40px; 
-    color: var(--gold-light); 
-}
-

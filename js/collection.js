@@ -49,12 +49,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function showDetails(card) {
 
         detailsCard.innerHTML = `
-            <img src="${card.image}" alt="${card.name}" class="details-image">
-            <p class="details-rarity">${card.rarity || ""}</p>
-            <h3 class="details-title">${card.name || ""}</h3>
-            <p>Élément : ${card.element || ""}</p>
-            <p class="details-description">${card.description || ""}</p>
-        `;
+            <div class=" image-g-global">
+                <div class = "image-g-details">
+                    <div>  
+                    <img src="${card.image}" alt="${card.name}" class="details-image">
+                    </div>
+                    <div>
+                    <p class="details-rarity">${card.rarity || ""}</p>
+                    <h3 class="details-title">${card.name || ""}</h3>
+                    <p>Élément : ${card.element || ""}</p>
+                    <p>Type : ${card.type || ""} </p>
+                    </div>
+                </div> 
+                <div class="description-image">
+                <p class="details-description">${card.description || "Aucun description"}</p>
+                </div>
+            </div>
+            `;
 
         details.hidden = false;
     }
