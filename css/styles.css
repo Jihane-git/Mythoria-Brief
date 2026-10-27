@@ -1084,105 +1084,14 @@ flex-direction: row;
     flex-direction: column;
 }
 
-
-/* ===== GRIMOIRE ===== */
+/* **********************GRIMOIRE******************************/
 
 .page-grimoire {
-    margin: 0;
-    min-height: 100vh;
-    background-color: #0B0718;
-    color: var(--gold-light);
     background-image: url(../images/background-grimoire.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
-
-.main-grimoire {
-    display: grid;
-    grid-template-columns: 300fr 760fr 443fr;
-    gap: 8px;
-
-    height: 817px;
-    padding: 0 43px;
-}
-
-
-.sidebar {
-    background-image: url("../images/backgorund-sidebar.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    box-sizing: border-box;
-}
-
-.milieu-section {
-    background-image: url("../images/background-milieu.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    box-sizing: border-box;
-}
-
-/* =====  DROIT ===== */
-
-.details-section {
-    background-image: url("../images/background-droit.png");
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 100% 100%;
-    box-sizing: border-box;
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media (max-width: 1200px) {
-    .main-grimoire {
-        grid-template-columns: 240px minmax(0, 1fr);
-    }
-
-    .details-section {
-        grid-column: 1 / -1;
-        min-height: 500px;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 700px) {
-    .main-grimoire {
-        grid-template-columns: minmax(0, 1fr);
-        width: 94%;
-        margin-top: 90px;
-    }
-
-    .sidebar {
-        min-height: 400px;
-    }
-
-    .milieu-section {
-        padding: 70px 20px 30px;
-    }
-
-    .details-section {
-        grid-column: auto;
-        min-height: 500px;
-    }
-
-    .cards-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px;
-    }
-}
-
-
-/* **********************GRIMOIRE******************************/
-
-.page-grimoire {
-    background-image: url(../images/background-grimoire.jpg);
 }
 
 .main-grimoire {
@@ -1201,24 +1110,25 @@ flex-direction: row;
 /* Panneau des éléments */
 .sidebar{
     background-image: url(../images/backgorund-sidebar.png);
-    position: relative;
-    min-width: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     border: 1px solid rgba(201, 155, 104, 0.7);
     border-radius: 8px;
 }
 .milieu-section {
     background-image: url(../images/background-milieu.png);
-    position: relative;
-    min-width: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
 
     border: 1px solid rgba(201, 155, 104, 0.7);
-    border-radius: 8px;
+    border-radius: 8px; 
 }
 .details-section{
     background-image: url(../images/background-droit.png);
-    position: relative;
-    min-width: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+
     border: 1px solid rgba(201, 155, 104, 0.7);
     border-radius: 8px;
 }
@@ -1309,8 +1219,9 @@ flex-direction: row;
 .light { color: #ffe5a0; background: #ffe5a0; }
 
 /********************** milieu ******************/
-
+.main-grimoire
 .milieu-section {
+    margin: 20px;
     padding: 20px;
     height: 75vh;
     min-height: 0;
@@ -1377,3 +1288,50 @@ flex-direction: row;
     text-align: center;
 }
 
+/**************** Droit side ********************/
+.details-section {
+    margin: 20px;
+    right: 20px;
+    width: 320px;
+    overflow-y: auto;
+    padding: 22px 18px;
+    border: 1px solid #c99b68;
+    border-radius: 10px;
+    background: rgba(8, 13, 34, 0.98);
+}
+
+
+.details-image {
+    width: 250px;
+    height: 300px;
+}
+
+.details-rarity {
+    margin: 10px 0;
+    color: #d6a0ff;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.details-title {
+    margin: 8px 0 14px;
+    color: #f5d6a2;
+    font-size: 1.4rem;
+    font-weight: 400;
+}
+
+.details-cart p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+.details-description {
+    color: #b6a9cb;
+}
+
+.ferme-details{
+    margin-right: auto;
+
+    
+}
