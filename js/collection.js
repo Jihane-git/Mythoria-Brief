@@ -113,4 +113,8 @@ document.addEventListener("DOMContentLoaded", function () {
     details.hidden = true;
     displayCards();
 
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") details.hidden = true;
+    });
+
 });
