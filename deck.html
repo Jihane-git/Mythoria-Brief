@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Isometra&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/deck.css">
+
+    <script src="./js/deck.js" defer></script>
+
+    <title>My Deck — Mythoria</title>
+</head>
+
+<body class="page-deck">
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">MYTHORIA</a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Booster Shop</a></li>
+            <li><a href="opening.html">Opening Chamber</a></li>
+            <li><a href="grimoire.html">My Grimoire</a></li>
+            <li><a href="deck.html" class="active">My Deck</a></li>
+        </ul>
+    </nav>
+
+    <main class="deck-page">
+
+        <header class="deck-header">
+            <p class="deck-eyebrow">YOUR COMBAT DESTINY</p>
+            <h1>MY DECK</h1>
+            <p class="deck-subtitle">
+                Choisissez vos cartes et préparez votre stratégie.
+            </p>
+
+            <div class="deck-progress">
+                <div class="deck-progress-info">
+                    <span>Cartes sélectionnées</span>
+                    <strong id="deck-count">0 / 20</strong>
+                </div>
+
+                <div
+                    class="deck-progress-track"
+                    role="progressbar"
+                    aria-label="Remplissage du deck"
+                    aria-valuemin="0"
+                    aria-valuemax="20"
+                    aria-valuenow="0"
+                    id="deck-progress"
+                >
+                    <div class="deck-progress-fill" id="deck-progress-fill"></div>
+                </div>
+            </div>
+        </header>
+
+        <div class="deck-layout">
+
+            <aside class="deck-sidebar">
+                <h2>Éléments</h2>
+
+                <div class="deck-filters">
+                    <button
+                        type="button"
+                        class="deck-filter active"
+                        data-filter="all"
+                    >
+                        <span>✧ Toutes les cartes</span>
+                        <span id="filter-count-all">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Feu">
+                        <span>Feu</span>
+                        <span data-filter-count="Feu">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Eau">
+                        <span>Eau</span>
+                        <span data-filter-count="Eau">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Terre">
+                        <span>Terre</span>
+                        <span data-filter-count="Terre">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Air">
+                        <span>Air</span>
+                        <span data-filter-count="Air">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Foudre">
+                        <span>Foudre</span>
+                        <span data-filter-count="Foudre">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Glace">
+                        <span>Glace</span>
+                        <span data-filter-count="Glace">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Ombre">
+                        <span>Ombre</span>
+                        <span data-filter-count="Ombre">0</span>
+                    </button>
+
+                    <button type="button" class="deck-filter" data-filter="Lumiere">
+                        <span>Lumière</span>
+                        <span data-filter-count="Lumiere">0</span>
+                    </button>
+                </div>
+
+                <div class="deck-sidebar-note">
+                    <p>
+                        Chaque carte unique ne peut être présente
+                        qu'une seule fois dans ton deck.
+                    </p>
+                </div>
+            </aside>
+
+            <!-- ZONE CENTRALE : CARTES DISPONIBLES -->
+            <section class="deck-collection">
+
+                <div class="deck-section-heading">
+                    <div>
+                        <p class="deck-eyebrow">YOUR COLLECTION</p>
+                        <h2>Le Grimoire</h2>
+                    </div>
+
+                    <span class="available-count" id="available-count">
+                        0 cartes
+                    </span>
+                </div>
+
+                <div class="deck-toolbar">
+                    <label class="deck-search">
+                        <span aria-hidden="true">⌕</span>
+                        <input
+                            type="search"
+                            id="deck-search"
+                            placeholder="Rechercher une carte..."
+                            aria-label="Rechercher une carte"
+                        >
+                    </label>
+
+                    <label class="deck-sort">
+                        <span class="visually-hidden">Trier par</span>
+                        <select id="deck-sort">
+                            <option value="rarity">Rareté</option>
+                            <option value="name">Nom</option>
+                            <option value="element">Élément</option>
+                        </select>
+                    </label>
+                </div>
+
+                <p class="deck-feedback" id="deck-feedback" role="status" aria-live="polite"></p>
+
+                <div class="deck-cards-grid" id="available-cards"></div>
+
+            </section>
+
+            <aside class="my-deck-panel">
+
+                <div class="my-deck-heading">
+                    <div>
+                        <p class="deck-eyebrow">YOUR BATTLE SETUP</p>
+                        <h2>Mon deck</h2>
+                    </div>
+
+                    <span class="deck-icon">⚔</span>
+                </div>
+
+                <p class="my-deck-description">
+                    Tes cartes prêtes pour le combat.
+                </p>
+
+                <div id="selected-cards" class="selected-cards"></div>
+
+                <div class="deck-statistics">
+                    <h3>Statistiques</h3>
+
+                    <div class="deck-stat-row">
+                        <span>Cartes dans le deck</span>
+                        <strong id="stat-total">0</strong>
+                    </div>
+
+                    <div class="deck-stat-row">
+                        <span>Éléments différents</span>
+                        <strong id="stat-elements">0</strong>
+                    </div>
+
+                    <div class="deck-stat-row">
+                        <span>Cartes communes</span>
+                        <strong id="stat-common">0</strong>
+                    </div>
+
+                    <div class="deck-stat-row">
+                        <span>Cartes rares</span>
+                        <strong id="stat-rare">0</strong>
+                    </div>
+
+                    <div class="deck-stat-row">
+                        <span>Cartes épiques</span>
+                        <strong id="stat-epic">0</strong>
+                    </div>
+
+                    <div class="deck-stat-row">
+                        <span>Cartes légendaires</span>
+                        <strong id="stat-legendary">0</strong>
+                    </div>
+                </div>
+
+                <div class="deck-actions">
+                    <button type="button" id="save-deck" class="deck-save-button">
+                        <span>✧</span> Sauvegarder le deck
+                    </button>
+
+                    <button type="button" id="clear-deck" class="deck-clear-button">
+                        Vider le deck
+                    </button>
+                </div>
+
+                <p id="save-status" class="save-status" role="status" aria-live="polite"></p>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
