@@ -112,6 +112,8 @@ function displayCards(){
     if (deckCount){
         deckCount.textContent = deck.length + "/" + maxCards;
     }
+
+    updateFilterCounts();
 }
 
 if (saveButton){
@@ -126,4 +128,22 @@ if (clearButton){
     });
 }
 displayCards();
+
+function updateFilterCounts() {
+    const allCount = document.querySelector("#filter-count-all");
+
+    if (allCount) {
+        allCount.textContent = collection.length;
+    }
+
+    document.querySelectorAll("[data-filter-count]").forEach(function(counter) {
+        const element = counter.dataset.filterCount.trim().toLowerCase();
+
+        const count = collection.filter(function(card) {
+            return String(card.element || "").trim().toLowerCase() === element;
+        }).length;
+
+        counter.textContent = count;
+    });
+}
 });
