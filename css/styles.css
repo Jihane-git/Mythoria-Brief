@@ -1335,3 +1335,13 @@ flex-direction: row;
 
     
 }
+
+/**************************** Desk ***************/
+
+
+
+.deck-page{
+    margin-top: 40px; 
+    color: var(--gold-light); 
+}
+
