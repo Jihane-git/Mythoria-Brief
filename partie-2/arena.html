@@ -1,78 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<body>
-    <nav>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/styles/style.css">
 
-    </nav>
-    <main>
-        <section class="header">
-            <div>
-                <svg></svg>
-                <div>
-                    <h4></h4>
-                    <button></button>
-                    <p><span></span></p>
+</head>
+<body class=" min-h-screen  text-white p-5 " style = "background-image: url('./assets/images/background (2).png');     background-attachment: fixed;     background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;">
+    <div class="grid grid-cols-1 gap-3 items-start lg:grid-cols-[1fr_250px] ">
+        
+        <main class="grid grid-rows-[auto_1fr_auto] gap-3" >
+            
+
+            <!-- adversaire -->
+            <section class="grid grid-cols-[auto_1fr_auto] items-center gap-4 bg-white/30 backdrop-opacity-95 p-4">
+                <div class="flex items-center gap-3">
+                    <svg class="size-12"> </svg>
+                    <div>
+                        <h4>Adversaire</h4>
+                        <button>Tenebres</button>
+                        <div class="flex ">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="#9b70cf"></path> </g></svg>
+                            <p>3000</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="carts-adversaire">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
+                        <ul class="flex justify-center gap-2">
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                        </ul> 
                 </div>
                 <div>
-                    <p></p>
-                    <p></p>
-                </div>
-            </div>
-        </section>
-
-        <section class="body-carts">
-            <div>
-                <div>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </div>
-            </div>
-            <span></span>
-            <div>
-                <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                        <p></p>
+                        <p></p>
+                </div> 
+            </section> 
+            <!-- terrain  --> 
+            <section class="grid grid-rows-[1fr_auto_1fr] gap-4 p-4 bg-white/30 backdrop-opacity-95">  
+                <ul class="flex justify-center gap-5 mr-10">
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
                 </ul>
-            </div>
-        </section>
+                
+                <span class="justify-self-center"></span>
 
-        <section>
-            <div>
-                <svg></svg>
-                <div>
-                    <h4></h4>
-                    <button></button>
-                    <p><span></span></p>
+                <ul class="flex justify-center gap-5 mr-10"> 
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[70px]" src="./assets/images/télécharger.jpg"></li>
+                </ul>
+                
+            </section>
+            <!-- Vous -->
+            <section class="grid grid-cols-[auto_1fr_auto] items-center gap-4 bg-white/30 backdrop-opacity-95 p-4">
+                <div class="items-center flex flex-row">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.45284 2.71266C7.8276 1.76244 9.1724 1.76245 9.54716 2.71267L10.7085 5.65732C10.8229 5.94743 11.0526 6.17707 11.3427 6.29148L14.2873 7.45284C15.2376 7.8276 15.2376 9.1724 14.2873 9.54716L11.3427 10.7085C11.0526 10.8229 10.8229 11.0526 10.7085 11.3427L9.54716 14.2873C9.1724 15.2376 7.8276 15.2376 7.45284 14.2873L6.29148 11.3427C6.17707 11.0526 5.94743 10.8229 5.65732 10.7085L2.71266 9.54716C1.76244 9.1724 1.76245 7.8276 2.71267 7.45284L5.65732 6.29148C5.94743 6.17707 6.17707 5.94743 6.29148 5.65732L7.45284 2.71266Z" fill="#1C274C"></path> <path d="M16.9245 13.3916C17.1305 12.8695 17.8695 12.8695 18.0755 13.3916L18.9761 15.6753C19.039 15.8348 19.1652 15.961 19.3247 16.0239L21.6084 16.9245C22.1305 17.1305 22.1305 17.8695 21.6084 18.0755L19.3247 18.9761C19.1652 19.039 19.039 19.1652 18.9761 19.3247L18.0755 21.6084C17.8695 22.1305 17.1305 22.1305 16.9245 21.6084L16.0239 19.3247C15.961 19.1652 15.8348 19.039 15.6753 18.9761L13.3916 18.0755C12.8695 17.8695 12.8695 17.1305 13.3916 16.9245L15.6753 16.0239C15.8348 15.961 15.961 15.8348 16.0239 15.6753L16.9245 13.3916Z" fill="#1C274C"></path> </g></svg>
+                    <div class=" items-center gap-3"  >
+                        <div>
+                        <h4>Vous</h4> 
+                        <button>Lumiere</button>
+                        <div class="flex ">
+                            <svg class="size-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M2 9.1371C2 14 6.01943 16.5914 8.96173 18.9109C10 19.7294 11 20.5 12 20.5C13 20.5 14 19.7294 15.0383 18.9109C17.9806 16.5914 22 14 22 9.1371C22 4.27416 16.4998 0.825464 12 5.50063C7.50016 0.825464 2 4.27416 2 9.1371Z" fill="#9b70cf"></path> </g></svg>
+                            <p>3000</p>
+                        </div>
+                    </div>
                 </div>
+                
                 <div class="carts-vous">
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
+                    <ul class="flex justify-center gap-2">
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
+                            <li><img class="w-[40px]" src="./assets/images/télécharger.jpg"></li>
                     </ul>
 
                 </div>
@@ -80,26 +93,34 @@
                     <p></p>
                     <p></p>
                 </div>
-            </div>
-        </section>
+                
+            </section>
 
-        <section>
-            <div>
-                <span></span>
-                <p>Deck</p>
-                <p class="quantite-deck"></p> 
-            </div>
-            <div>
-                <img>
-            </div>
-        </section>
 
-        <section>
-            <div>
-                <p>Historique</p>
-            </div>
-            <button><spna></span> Fin de tour</button>
-        </section>
-    </main>
+        </main>
+
+        <aside class="grid gap-4 bg-white/30 backdrop-opacity-95">
+            <section class="p-4">
+                <div class="flex justify-between">
+                    <span></span>
+                    <p>Deck</p>
+                    <p class="quantite-deck"></p> 
+                </div>
+                <div>
+                    <img>
+                </div>
+            </section>
+
+            <section bg-white p-4 >
+                <div>
+                    <p>Historique</p>
+                </div>
+                <button class=" flex m-4 py-2 px-4 bg-[#430f58] rounded-xl">
+                    <svg  fill="#ffd700" margin="10px" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M256,0C114.6,0,0,114.6,0,256s114.6,256,256,256c70.7,0,134.7-28.6,181-75c46.3-46.4,75-110.4,75-181 C512,114.6,397.4,0,256,0z M256,256c-96.7-96.7-160.9-96-200.8-71.5C84.6,101.9,163.3,42.7,256,42.7c117.8,0,213.3,95.5,213.3,213.3 c0,25.1-4.6,49.1-12.5,71.5C416.9,352,352.7,352.7,256,256z"></path> </g></svg>
+                    <span>Fin de tour</span>
+                </button>
+            </section>
+        </aside>
+    </div>
 </body>
 </html>
