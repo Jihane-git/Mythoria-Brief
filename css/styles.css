@@ -1546,3 +1546,13 @@ flex-direction: row;
     .description-image { padding: 14px 10px; }
     .details-description { font-size: 0.9rem; line-height: 1.7; }
 }
+
+.btn-scroll{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: var(--gold-light);
+    color: var(--purple-light);
+    border-radius: 15px;
+}
